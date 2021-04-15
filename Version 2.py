@@ -116,7 +116,7 @@ class Search:
         ################################
         self.customentry = Entry(self.searchframe, width=10)
         self.customentry.grid(row=4, column=0, sticky=W, padx=10)
-        self.customentry.insert(END, '100')
+        self.customentry.insert(END, '1')
 
         self.enlabel = Label(self.searchframe, text="Energy (kJ)", bg="dodgerblue2")
         self.enlabel.grid(row=4, column=1, sticky=W, padx=10)
@@ -176,13 +176,13 @@ class Search:
                 self.suglabel1.configure(text=a['sugars'])
                 self.sodlabel1.configure(text=a['sodium'])
                 
-                self.enlabel2.configure(text= ((float(a['energy']) * 1000) * (float(self.customentry.get()) / 100)) / 1000)
-                self.prolabel2.configure(text= ((float(a['protein']) * 1000) * (float(self.customentry.get()) / 100)) / 1000)
-                self.fTotallabel2.configure(text= ((float(a['fatTotal']) * 1000) * (float(self.customentry.get()) / 100)) / 1000)
-                self.fSaturatedlabel2.configure(text= ((float(a['fatSaturated']) * 1000) * (float(self.customentry.get()) / 100)) / 1000)
-                self.carblabel2.configure(text= ((float(a['carbohydrate']) * 1000) * (float(self.customentry.get()) / 100)) / 1000)
-                self.suglabel2.configure(text= ((float(a['sugars']) * 1000) * (float(self.customentry.get()) / 100)) / 1000)
-                self.sodlabel2.configure(text= ((float(a['sodium']) * 1000) * (float(self.customentry.get()) / 100)) / 1000)
+                self.enlabel2.configure(text= ((float(a['energy']) * 1000) * (float(self.customentry.get()))) / 1000)
+                self.prolabel2.configure(text= ((float(a['protein']) * 1000) * (float(self.customentry.get()))) / 1000)
+                self.fTotallabel2.configure(text= ((float(a['fatTotal']) * 1000) * (float(self.customentry.get()))) / 1000)
+                self.fSaturatedlabel2.configure(text= ((float(a['fatSaturated']) * 1000) * (float(self.customentry.get()))) / 1000)
+                self.carblabel2.configure(text= ((float(a['carbohydrate']) * 1000) * (float(self.customentry.get()))) / 1000)
+                self.suglabel2.configure(text= ((float(a['sugars']) * 1000) * (float(self.customentry.get()))) / 1000)
+                self.sodlabel2.configure(text= ((float(a['sodium']) * 1000) * (float(self.customentry.get()))) / 1000)
             counter += 1
     def search(self):
         self.listbox.delete(0, END)
