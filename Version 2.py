@@ -1,12 +1,17 @@
+###################  NUTRIENT INFO CAUCULATOR  ###################
+###################     BY MICHAEL VISSER      ###################
+#IMPORTS ALL THE NECESARY MODULES
 from tkinter import *
 from tkinter import ttk
 from tkinter import font
 import time
 from decimal import Decimal
+#IMPORTS ALL THE NECESARY MODULES
+#OPENS THE FILE AND READS IT
 my_file = open ("Nutrientfile.txt")
-
 file_content = my_file.readlines()
-
+#OPENS THE FILE AND READS IT
+#MAKES A LIST OF ALL THE ID'S, TYPES, FULL NAMES, ECT
 foodData = []
 
 for n in range(1, len(file_content)):
@@ -33,38 +38,39 @@ for n in range(1, len(file_content)):
         'sugars': Vsugars,
         'sodium': Vsodium,
         })
-
+#MAKES A LIST OF ALL THE ID'S, TYPES, FULL NAMES, ECT
+#CLASS FOR THE GUI
 class Search:
     def __init__(self, parent):
-        #SEARCH FRAME
+        #CREATES MAIN FRAME
         self.searchframe = Frame(parent)
         self.searchframe.grid(row=0, columnspan=8)
         self.scrollboi = Scrollbar(self.searchframe, orient=VERTICAL)
-        #SEARCH FRAME
-        #BLUE PART
+        #CREATES MAIN FRAME
+        #CREATES TOP BLUE PART
         self.searchheader = Frame(self.searchframe, bg="dodgerblue2", width=1000, height=65)
         self.searchheader.grid_propagate(0)
         self.searchheader.grid(row=0, columnspan=9)
-        
-        #self.breakwarn = Label(self.searchheader, text="Use Mouse To Scroll", bg="dodgerblue2")
-        #self.breakwarn.grid(row=0, columnspan=2, padx=(160,10), pady=20)
-
+        #CREATES TOP BLUE PART
+        #CREATES ENTRY BOX IN TOP BLUE PART
         self.searchentry = Entry(self.searchheader, width=30)
         self.searchentry.grid(row=0, columnspan=9, padx=(300,10), pady=20)
-        
+        #ENTRY BOX IN TOP BLUE PART
+        #CREATES BLUE SEARCH BUTTON
         self.searchbutton = Button(self.searchheader, text="Search", bg="deep sky blue", activebackground="deep sky blue", anchor=NW, command=self.search)
         self.searchbutton.grid(row=0, columnspan=9, sticky=NW, padx=(600,10), pady=20)
-        #BLUE PART
+        #CREATES BLUE SEARCH BUTTON
+        #CREATES A SCROLLABLE LIST BOX
         self.listbox = Listbox(self.searchframe, width=100, selectmode=SINGLE, yscrollcommand=self.scrollboi.set)
         self.scrollboi.config(command=self.listbox.yview)
-        #self.scrollboi.grid(row=1, column=2)
         self.listbox.grid(row=1, columnspan=9, padx=(0), pady=20)
-        #PINK PART
-
+        #CREATES A SCROLLABLE LIST BOX
+        #CREATES MIDDLE BLUE PART       
         self.infoheader = Frame(self.searchframe, bg="dodgerblue2", width=1000, height=22)
         self.infoheader.grid_propagate(0)
         self.infoheader.grid(row=2, columnspan=9)
-##########
+        #CREATES MIDDLE BLUE PART       
+        #CREATES LABELS IN THE MIDDLE BLUE PART
         self.perserving = Label(self.searchframe, text="Per Serving:", bg="dodgerblue2")
         self.perserving.grid(row=2, column=0, sticky=W, padx=10)
 
@@ -88,7 +94,8 @@ class Search:
 
         self.sodlabel = Label(self.searchframe, text="Sodium (g)", bg="dodgerblue2")
         self.sodlabel.grid(row=2, column=7, sticky=W, padx=10)
-###############################################################################################
+        #CREATES LABELS IN THE MIDDLE BLUE PART
+        #CREATES LABELS THAT GET CHANGED WHEN PRESSING BUTTON
         self.enlabel1 = Label(self.searchframe, text = "-")
         self.enlabel1.grid(row=3, column=1, sticky=W, padx=(10,2))
 
@@ -109,15 +116,18 @@ class Search:
 
         self.sodlabel1 = Label(self.searchframe, text = "-")
         self.sodlabel1.grid(row=3, column=7, sticky=W, padx=(10,2))
-        ################################
+        #CREATES LABELS THAT GET CHANGED WHEN PRESSING BUTTON
+        #CREATES BOTTOM BLUE PART
         self.infoheader2 = Frame(self.searchframe, bg="dodgerblue2", width=1000, height=22)
         self.infoheader2.grid_propagate(0)
         self.infoheader2.grid(row=4, columnspan=9)
-        ################################
+        #CREATES BOTTOM BLUE PART
+        #CREATES THE ENTRY BOX AT THE BOTTOM OF THE GUI
         self.customentry = Entry(self.searchframe, width=10)
         self.customentry.grid(row=4, column=0, sticky=W, padx=10)
         self.customentry.insert(END, '1')
-
+        #CREATES THE ENTRY BOX AT THE BOTTOM OF THE GUI
+        #CREATES LABELS IN BOTTOM BLUE PART
         self.enlabel = Label(self.searchframe, text="Energy (kJ)", bg="dodgerblue2")
         self.enlabel.grid(row=4, column=1, sticky=W, padx=10)
 
@@ -138,7 +148,8 @@ class Search:
 
         self.sodlabel = Label(self.searchframe, text="Sodium (g)", bg="dodgerblue2")
         self.sodlabel.grid(row=4, column=7, sticky=W, padx=10)
-        ###################################3
+        #CREATES LABELS IN BOTTOM BLUE PART
+        #CREATES LABELS THAT GET CHANGED WHEN BUTTON PRESSED (DEPENDS WHAT IS IN ENTRY BOX)
         self.enlabel2 = Label(self.searchframe, text = "-")
         self.enlabel2.grid(row=5, column=1, sticky=W, padx=(10,2))
 
@@ -159,15 +170,18 @@ class Search:
 
         self.sodlabel2 = Label(self.searchframe, text = "-")
         self.sodlabel2.grid(row=5, column=7, sticky=W, padx=(10,2))
-        #SEARCH FRAME 
+        #CREATES LABELS THAT GET CHANGED WHEN BUTTON PRESSED (DEPENDS WHAT IS IN ENTRY BOX)
+        #GOES TO CLICKEVENT WHEN YOU SELECT SOMETHING IN THE LIST BOX
         self.listbox.bind('<<ListboxSelect>>', self.clickevent)
         self.listbox.selection_set(3)
+        #GOES TO CLICKEVENT WHEN YOU SELECT SOMETHING IN THE LIST BOX
 
+    #DEFINES THE CLICK EVENT FUNCTION    
     def clickevent(self, varX):
-        counter = 0
-        for a in foodData:
-            if a['fullName'] == self.listbox.get(self.listbox.curselection()):
+        for a in foodData: #FOR THE NUMBER OF THINGS IN FOOD DATA
+            if a['fullName'] == self.listbox.get(self.listbox.curselection()): #IF (NUMBER IN FOODDATA+FULLNAME) IS THE SAME AS THE THING CLICKED ON IN THE LIST BOX THEN:
         
+                #EDIT FIRST SET OF EDITABLE LABELS
                 self.enlabel1.configure(text=a['energy'])
                 self.prolabel1.configure(text=a['protein'])
                 self.fTotallabel1.configure(text=a['fatTotal'])
@@ -175,28 +189,32 @@ class Search:
                 self.carblabel1.configure(text=a['carbohydrate'])
                 self.suglabel1.configure(text=a['sugars'])
                 self.sodlabel1.configure(text=a['sodium'])
-                
-                self.enlabel2.configure(text= ((float(a['energy']) * 1000) * (float(self.customentry.get()))) / 1000)
+                #EDIT FIRST SET OF EDITABLE LABELS
+                #EDIT SECOND SET OF EDITABLE LABELS (AND TIMES THE NUBERS BY THE NUMBER IN THE ENTRY BOX)               
+                self.enlabel2.configure(text= ((float(a['energy']) * 1000) * (float(self.customentry.get()))) / 1000)   #FANCY MATH SO IT DOESNT SPIT OUT WEIRD NUMBERS
                 self.prolabel2.configure(text= ((float(a['protein']) * 1000) * (float(self.customentry.get()))) / 1000)
                 self.fTotallabel2.configure(text= ((float(a['fatTotal']) * 1000) * (float(self.customentry.get()))) / 1000)
                 self.fSaturatedlabel2.configure(text= ((float(a['fatSaturated']) * 1000) * (float(self.customentry.get()))) / 1000)
                 self.carblabel2.configure(text= ((float(a['carbohydrate']) * 1000) * (float(self.customentry.get()))) / 1000)
                 self.suglabel2.configure(text= ((float(a['sugars']) * 1000) * (float(self.customentry.get()))) / 1000)
                 self.sodlabel2.configure(text= ((float(a['sodium']) * 1000) * (float(self.customentry.get()))) / 1000)
-            counter += 1
+                #EDIT SECOND SET OF EDITABLE LABELS (AND TIMES THE NUBERS BY THE NUMBER IN THE ENTRY BOX)
+
+    #DEFINES THE SEARCH FUNCTION
     def search(self):
-        self.listbox.delete(0, END)
-        self.call()
+        self.listbox.delete(0, END) #CLEARS THE LIST BOX
+        self.call()                 #GO TO THE CALL FUNCTION
 
+    #DEFINES THE CALL FUNCTION
     def call(self):
-        counter = 0
-        for s in foodData:
-            if s['type'].lower() == self.searchentry.get().lower():
-                self.listbox.insert(END, s['fullName'])
-                counter += 1
+        for s in foodData: #FOR THE NUMBER OF THINGS IN FOOD DATA
+            if s['type'].lower() == self.searchentry.get().lower(): #IF THE (NUMBER IN FOODDATA + THE FOOD TYPE) IS THE SAME AS WHAT IS IN THE TOP ENTRY BOX THEN:
+                self.listbox.insert(END, s['fullName'])             #INSERT ITEMS IN THE LIST BOX
 
+#FANCY GUI STUFF
 root = Tk()
 root.title("Search For File") 
 root.geometry("1000x355+-10+0") 
 interface = Search(root)
 root.mainloop()
+#FANCY GUI STUFF
