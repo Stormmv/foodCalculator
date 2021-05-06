@@ -53,7 +53,7 @@ class Search:
         self.backlabel.place(x=0)
         #CREATES THE BACKROUND
         #CREATES TOP BLUE PART
-        self.searchheader = Frame(self.searchframe, bg="deep sky blue", width=1000, height=65)
+        self.searchheader = Frame(self.searchframe, bg="navy", width=1000, height=65)
         self.searchheader.grid_propagate(0)
         self.searchheader.grid(row=0, columnspan=9)
         #CREATES TOP BLUE PART
@@ -62,7 +62,7 @@ class Search:
         self.searchentry.grid(row=0, columnspan=9, padx=(300,10), pady=20)
         #ENTRY BOX IN TOP BLUE PART
         #CREATES BLUE SEARCH BUTTON
-        self.searchbutton = Button(self.searchheader, text="Search", bg="deep sky blue2", activebackground="deep sky blue", anchor=NW, command=self.search)
+        self.searchbutton = Button(self.searchheader, text="Search", fg="gray99", bg="mediumblue", activebackground="mediumblue", anchor=NW, command=self.search)
         self.searchbutton.grid(row=0, columnspan=9, sticky=NW, padx=(600,10), pady=20)
         #CREATES BLUE SEARCH BUTTON
         #CREATES A SCROLLABLE LIST BOX
@@ -71,59 +71,63 @@ class Search:
         self.listbox.grid(row=1, columnspan=9, padx=(0), pady=20)
         #CREATES A SCROLLABLE LIST BOX
         #CREATES MIDDLE BLUE PART       
-        self.infoheader = Frame(self.searchframe, bg="deep sky blue", width=1000, height=22)
+        self.infoheader = Frame(self.searchframe, bg="navy", width=1000, height=22)
         self.infoheader.grid_propagate(0)
         self.infoheader.grid(row=2, columnspan=9)
         #CREATES MIDDLE BLUE PART       
         #CREATES LABELS IN THE MIDDLE BLUE PART
-        self.perserving = Label(self.searchframe, text="Per Serving:", bg="deep sky blue")
+        self.perserving = Label(self.searchframe, text="Per Serving:", fg="gray99", bg="navy")
         self.perserving.grid(row=2, column=0, sticky=W, padx=10)
 
-        self.enlabel = Label(self.searchframe, text="Energy (kJ)", bg="deep sky blue")
+        self.enlabel = Label(self.searchframe, text="Energy (kJ)", fg="gray99", bg="navy")
         self.enlabel.grid(row=2, column=1, sticky=W, padx=10)
 
-        self.prolabel = Label(self.searchframe, text="Protein (g)", bg="deep sky blue")
+        self.prolabel = Label(self.searchframe, text="Protein (g)", fg="gray99", bg="navy")
         self.prolabel.grid(row=2, column=2, sticky=W, padx=10)
 
-        self.fTotallabel = Label(self.searchframe, text="Fat, Total (g)", bg="deep sky blue")
+        self.fTotallabel = Label(self.searchframe, text="Fat, Total (g)", fg="gray99", bg="navy")
         self.fTotallabel.grid(row=2, column=3, sticky=W, padx=10)
 
-        self.fSaturatedlabel = Label(self.searchframe, text="Fat, Saturated (g)", bg="deep sky blue")
+        self.fSaturatedlabel = Label(self.searchframe, text="Fat, Saturated (g)", fg="gray99", bg="navy")
         self.fSaturatedlabel.grid(row=2, column=4, sticky=W, padx=10)
 
-        self.carblabel = Label(self.searchframe, text="Carbohydrates (g)", bg="deep sky blue")
+        self.carblabel = Label(self.searchframe, text="Carbohydrates (g)", fg="gray99", bg="navy")
         self.carblabel.grid(row=2, column=5, sticky=W, padx=10)
 
-        self.suglabel = Label(self.searchframe, text="Sugar (g)", bg="deep sky blue")
+        self.suglabel = Label(self.searchframe, text="Sugar (g)", fg="gray99", bg="navy")
         self.suglabel.grid(row=2, column=6, sticky=W, padx=10)
 
-        self.sodlabel = Label(self.searchframe, text="Sodium (g)", bg="deep sky blue")
+        self.sodlabel = Label(self.searchframe, text="Sodium (g)", fg="gray99", bg="navy")
         self.sodlabel.grid(row=2, column=7, sticky=W, padx=10)
         #CREATES LABELS IN THE MIDDLE BLUE PART
         #CREATES LABELS THAT GET CHANGED WHEN PRESSING BUTTON
-        self.enlabel1 = Label(self.searchframe, text = "-", bg="deep sky blue")
+        self.infoheaderedit = Frame(self.searchframe, bg="navy", width=1000, height=22)
+        self.infoheaderedit.grid_propagate(0)
+        self.infoheaderedit.grid(row=3, columnspan=9)
+        
+        self.enlabel1 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
         self.enlabel1.grid(row=3, column=1, sticky=W, padx=(10,2))
 
-        self.prolabel1 = Label(self.searchframe, text = "-", bg="deep sky blue")
+        self.prolabel1 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
         self.prolabel1.grid(row=3, column=2, sticky=W, padx=(10,2))
 
-        self.fTotallabel1 = Label(self.searchframe, text = "-", bg="deep sky blue")
+        self.fTotallabel1 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
         self.fTotallabel1.grid(row=3, column=3, sticky=W, padx=(10,2))
 
-        self.fSaturatedlabel1 = Label(self.searchframe, text = "-", bg="deep sky blue")
+        self.fSaturatedlabel1 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
         self.fSaturatedlabel1.grid(row=3, column=4, sticky=W, padx=(10,2))
 
-        self.carblabel1 = Label(self.searchframe, text = "-", bg="deep sky blue")
+        self.carblabel1 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
         self.carblabel1.grid(row=3, column=5, sticky=W, padx=(10,2))
 
-        self.suglabel1 = Label(self.searchframe, text = "-", bg="deep sky blue")
+        self.suglabel1 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
         self.suglabel1.grid(row=3, column=6, sticky=W, padx=(10,2))
 
-        self.sodlabel1 = Label(self.searchframe, text = "-", bg="deep sky blue")
+        self.sodlabel1 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
         self.sodlabel1.grid(row=3, column=7, sticky=W, padx=(10,2))
         #CREATES LABELS THAT GET CHANGED WHEN PRESSING BUTTON
         #CREATES BOTTOM BLUE PART
-        self.infoheader2 = Frame(self.searchframe, bg="deep sky blue", width=1000, height=22)
+        self.infoheader2 = Frame(self.searchframe, bg="navy", width=1000, height=22)
         self.infoheader2.grid_propagate(0)
         self.infoheader2.grid(row=4, columnspan=9)
         #CREATES BOTTOM BLUE PART
@@ -133,47 +137,51 @@ class Search:
         self.customentry.insert(END, '1')
         #CREATES THE ENTRY BOX AT THE BOTTOM OF THE GUI
         #CREATES LABELS IN BOTTOM BLUE PART
-        self.enlabel = Label(self.searchframe, text="Energy (kJ)", bg="deep sky blue")
+        self.enlabel = Label(self.searchframe, text="Energy (kJ)", fg="gray99", bg="navy")
         self.enlabel.grid(row=4, column=1, sticky=W, padx=10)
 
-        self.prolabel = Label(self.searchframe, text="Protein (g)", bg="deep sky blue")
+        self.prolabel = Label(self.searchframe, text="Protein (g)", fg="gray99", bg="navy")
         self.prolabel.grid(row=4, column=2, sticky=W, padx=10)
 
-        self.fTotallabel = Label(self.searchframe, text="Fat, Total (g)", bg="deep sky blue")
+        self.fTotallabel = Label(self.searchframe, text="Fat, Total (g)", fg="gray99", bg="navy")
         self.fTotallabel.grid(row=4, column=3, sticky=W, padx=10)
 
-        self.fSaturatedlabel = Label(self.searchframe, text="Fat, Saturated (g)", bg="deep sky blue")
+        self.fSaturatedlabel = Label(self.searchframe, text="Fat, Saturated (g)", fg="gray99", bg="navy")
         self.fSaturatedlabel.grid(row=4, column=4, sticky=W, padx=10)
 
-        self.carblabel = Label(self.searchframe, text="Carbohydrates (g)", bg="deep sky blue")
+        self.carblabel = Label(self.searchframe, text="Carbohydrates (g)", fg="gray99", bg="navy")
         self.carblabel.grid(row=4, column=5, sticky=W, padx=10)
 
-        self.suglabel = Label(self.searchframe, text="Sugar (g)", bg="deep sky blue")
+        self.suglabel = Label(self.searchframe, text="Sugar (g)", fg="gray99", bg="navy")
         self.suglabel.grid(row=4, column=6, sticky=W, padx=10)
 
-        self.sodlabel = Label(self.searchframe, text="Sodium (g)", bg="deep sky blue")
+        self.sodlabel = Label(self.searchframe, text="Sodium (g)", fg="gray99", bg="navy")
         self.sodlabel.grid(row=4, column=7, sticky=W, padx=10)
         #CREATES LABELS IN BOTTOM BLUE PART
         #CREATES LABELS THAT GET CHANGED WHEN BUTTON PRESSED (DEPENDS WHAT IS IN ENTRY BOX)
-        self.enlabel2 = Label(self.searchframe, text = "-", bg="deep sky blue")
+        self.infoheaderedit2 = Frame(self.searchframe, bg="navy", width=1000, height=22)
+        self.infoheaderedit2.grid_propagate(0)
+        self.infoheaderedit2.grid(row=5, columnspan=9)
+
+        self.enlabel2 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
         self.enlabel2.grid(row=5, column=1, sticky=W, padx=(10,2))
 
-        self.prolabel2 = Label(self.searchframe, text = "-", bg="deep sky blue")
+        self.prolabel2 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
         self.prolabel2.grid(row=5, column=2, sticky=W, padx=(10,2))
 
-        self.fTotallabel2 = Label(self.searchframe, text = "-", bg="deep sky blue")
+        self.fTotallabel2 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
         self.fTotallabel2.grid(row=5, column=3, sticky=W, padx=(10,2))
 
-        self.fSaturatedlabel2 = Label(self.searchframe, text = "-", bg="deep sky blue")
+        self.fSaturatedlabel2 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
         self.fSaturatedlabel2.grid(row=5, column=4, sticky=W, padx=(10,2))
 
-        self.carblabel2 = Label(self.searchframe, text = "-", bg="deep sky blue")
+        self.carblabel2 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
         self.carblabel2.grid(row=5, column=5, sticky=W, padx=(10,2))
 
-        self.suglabel2 = Label(self.searchframe, text = "-", bg="deep sky blue")
+        self.suglabel2 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
         self.suglabel2.grid(row=5, column=6, sticky=W, padx=(10,2))
 
-        self.sodlabel2 = Label(self.searchframe, text = "-", bg="deep sky blue")
+        self.sodlabel2 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
         self.sodlabel2.grid(row=5, column=7, sticky=W, padx=(10,2))
         #CREATES LABELS THAT GET CHANGED WHEN BUTTON PRESSED (DEPENDS WHAT IS IN ENTRY BOX)
         #GOES TO CLICKEVENT WHEN YOU SELECT SOMETHING IN THE LIST BOX
