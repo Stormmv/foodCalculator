@@ -105,25 +105,25 @@ class Search:
         self.infoheaderedit.grid_propagate(0)
         self.infoheaderedit.grid(row=3, columnspan=9)
         
-        self.enlabel1 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
+        self.enlabel1 = Label(self.searchframe, text = " ", fg="gray99", bg="navy")
         self.enlabel1.grid(row=3, column=1, sticky=W, padx=(10,2))
 
-        self.prolabel1 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
+        self.prolabel1 = Label(self.searchframe, text = " ", fg="gray99", bg="navy")
         self.prolabel1.grid(row=3, column=2, sticky=W, padx=(10,2))
 
-        self.fTotallabel1 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
+        self.fTotallabel1 = Label(self.searchframe, text = " ", fg="gray99", bg="navy")
         self.fTotallabel1.grid(row=3, column=3, sticky=W, padx=(10,2))
 
-        self.fSaturatedlabel1 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
+        self.fSaturatedlabel1 = Label(self.searchframe, text = " ", fg="gray99", bg="navy")
         self.fSaturatedlabel1.grid(row=3, column=4, sticky=W, padx=(10,2))
 
-        self.carblabel1 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
+        self.carblabel1 = Label(self.searchframe, text = " ", fg="gray99", bg="navy")
         self.carblabel1.grid(row=3, column=5, sticky=W, padx=(10,2))
 
-        self.suglabel1 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
+        self.suglabel1 = Label(self.searchframe, text = " ", fg="gray99", bg="navy")
         self.suglabel1.grid(row=3, column=6, sticky=W, padx=(10,2))
 
-        self.sodlabel1 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
+        self.sodlabel1 = Label(self.searchframe, text = " ", fg="gray99", bg="navy")
         self.sodlabel1.grid(row=3, column=7, sticky=W, padx=(10,2))
         #CREATES LABELS THAT GET CHANGED WHEN PRESSING BUTTON
         #CREATES BOTTOM BLUE PART
@@ -163,25 +163,25 @@ class Search:
         self.infoheaderedit2.grid_propagate(0)
         self.infoheaderedit2.grid(row=5, columnspan=9)
 
-        self.enlabel2 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
+        self.enlabel2 = Label(self.searchframe, text = " ", fg="gray99", bg="navy")
         self.enlabel2.grid(row=5, column=1, sticky=W, padx=(10,2))
 
-        self.prolabel2 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
+        self.prolabel2 = Label(self.searchframe, text = " ", fg="gray99", bg="navy")
         self.prolabel2.grid(row=5, column=2, sticky=W, padx=(10,2))
 
-        self.fTotallabel2 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
+        self.fTotallabel2 = Label(self.searchframe, text = " ", fg="gray99", bg="navy")
         self.fTotallabel2.grid(row=5, column=3, sticky=W, padx=(10,2))
 
-        self.fSaturatedlabel2 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
+        self.fSaturatedlabel2 = Label(self.searchframe, text = " ", fg="gray99", bg="navy")
         self.fSaturatedlabel2.grid(row=5, column=4, sticky=W, padx=(10,2))
 
-        self.carblabel2 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
+        self.carblabel2 = Label(self.searchframe, text = " ", fg="gray99", bg="navy")
         self.carblabel2.grid(row=5, column=5, sticky=W, padx=(10,2))
 
-        self.suglabel2 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
+        self.suglabel2 = Label(self.searchframe, text = " ", fg="gray99", bg="navy")
         self.suglabel2.grid(row=5, column=6, sticky=W, padx=(10,2))
 
-        self.sodlabel2 = Label(self.searchframe, text = "-", fg="gray99", bg="navy")
+        self.sodlabel2 = Label(self.searchframe, text = " ", fg="gray99", bg="navy")
         self.sodlabel2.grid(row=5, column=7, sticky=W, padx=(10,2))
         #CREATES LABELS THAT GET CHANGED WHEN BUTTON PRESSED (DEPENDS WHAT IS IN ENTRY BOX)
         #GOES TO CLICKEVENT WHEN YOU SELECT SOMETHING IN THE LIST BOX
@@ -216,6 +216,23 @@ class Search:
     #DEFINES THE SEARCH FUNCTION
     def search(self):
         self.listbox.delete(0, END) #CLEARS THE LIST BOX
+
+        self.enlabel1.configure(text=' ') #RESETS THE LABELS THAT DISPLAY THE VALUES
+        self.prolabel1.configure(text=' ')
+        self.fTotallabel1.configure(text=' ')
+        self.fSaturatedlabel1.configure(text=' ')
+        self.carblabel1.configure(text=' ')
+        self.suglabel1.configure(text=' ')
+        self.sodlabel1.configure(text=' ')
+
+        self.enlabel2.configure(text=' ') #RESETS THE LABELS THAT DISPLAY THE VALUES
+        self.prolabel2.configure(text=' ')
+        self.fTotallabel2.configure(text=' ')
+        self.fSaturatedlabel2.configure(text=' ')
+        self.carblabel2.configure(text=' ')
+        self.suglabel2.configure(text=' ')
+        self.sodlabel2.configure(text=' ')
+        
         self.call()                 #GO TO THE CALL FUNCTION
 
     #DEFINES THE CALL FUNCTION
