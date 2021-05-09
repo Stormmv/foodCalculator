@@ -204,13 +204,13 @@ class Search:
                 self.sodlabel1.configure(text=a['sodium'])
                 #EDIT FIRST SET OF EDITABLE LABELS
                 #EDIT SECOND SET OF EDITABLE LABELS (AND TIMES THE NUBERS BY THE NUMBER IN THE ENTRY BOX)               
-                self.enlabel2.configure(text= ((float(a['energy']) * 1000) * (float(self.customentry.get()))) / 1000)   #FANCY MATH SO IT DOESNT SPIT OUT WEIRD NUMBERS
-                self.prolabel2.configure(text= ((float(a['protein']) * 1000) * (float(self.customentry.get()))) / 1000)
-                self.fTotallabel2.configure(text= ((float(a['fatTotal']) * 1000) * (float(self.customentry.get()))) / 1000)
-                self.fSaturatedlabel2.configure(text= ((float(a['fatSaturated']) * 1000) * (float(self.customentry.get()))) / 1000)
-                self.carblabel2.configure(text= ((float(a['carbohydrate']) * 1000) * (float(self.customentry.get()))) / 1000)
-                self.suglabel2.configure(text= ((float(a['sugars']) * 1000) * (float(self.customentry.get()))) / 1000)
-                self.sodlabel2.configure(text= ((float(a['sodium']) * 1000) * (float(self.customentry.get()))) / 1000)
+                self.enlabel2.configure(text= (float(a['energy']) * (float(self.customentry.get()))))  #FANCY MATH SO IT DOESNT SPIT OUT WEIRD NUMBERS
+                self.prolabel2.configure(text= (float(a['protein']) * (float(self.customentry.get()))))
+                self.fTotallabel2.configure(text= (float(a['fatTotal']) * (float(self.customentry.get()))))
+                self.fSaturatedlabel2.configure(text= (float(a['fatSaturated']) * (float(self.customentry.get()))))
+                self.carblabel2.configure(text= (float(a['carbohydrate']) * (float(self.customentry.get()))))
+                self.suglabel2.configure(text= (float(a['sugars']) * (float(self.customentry.get()))))
+                self.sodlabel2.configure(text= (float(a['sodium']) * (float(self.customentry.get()))))
                 #EDIT SECOND SET OF EDITABLE LABELS (AND TIMES THE NUBERS BY THE NUMBER IN THE ENTRY BOX)
 
     #DEFINES THE SEARCH FUNCTION
