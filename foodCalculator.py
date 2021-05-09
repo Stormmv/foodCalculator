@@ -57,6 +57,10 @@ class Search:
         self.searchheader.grid_propagate(0)
         self.searchheader.grid(row=0, columnspan=9)
         #CREATES TOP BLUE PART
+        #SHOWS THE BACKROUND AT THE TOP
+        self.searchbacklabel = Label(self.searchheader, image=self.back)
+        self.searchbacklabel.place(x=0)
+        #SHOWS THE BACKROUND AT THE TOP
         #CREATES ENTRY BOX IN TOP BLUE PART
         self.searchentry = Entry(self.searchheader, width=30)
         self.searchentry.grid(row=0, columnspan=9, padx=(300,10), pady=20)
