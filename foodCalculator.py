@@ -248,7 +248,7 @@ class Search:
 #FANCY GUI STUFF
 root = Tk()
 root.title("Search For File") 
-root.geometry("1000x355+-10+0")
+root.geometry("1000x355+300+150")
 interface = Search(root)
 root.mainloop()
 #FANCY GUI STUFF
