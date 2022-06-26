@@ -1,4 +1,4 @@
-###################  NUTRIENT INFO CAUCULATOR  ###################
+###################       FOOD DATABASE        ###################
 ###################     BY MICHAEL VISSER      ###################
 #IMPORTS ALL THE NECESARY MODULES
 from tkinter import *
