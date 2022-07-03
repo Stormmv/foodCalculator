@@ -6,6 +6,7 @@ from tkinter import ttk
 from tkinter import font
 import time
 from decimal import Decimal
+import csv
 #IMPORTS ALL THE NECESARY MODULES
 #OPENS THE FILE AND READS IT
 my_file = open ("Nutrientfile.txt")
@@ -13,6 +14,8 @@ file_content = my_file.readlines()
 #OPENS THE FILE AND READS IT
 #MAKES A LIST OF ALL THE ID'S, TYPES, FULL NAMES, ECT
 foodData = []
+user = ""
+
 
 for n in range(1, len(file_content)):
     Vid = file_content[n].split('\t')[0]
@@ -69,6 +72,8 @@ class Search:
         self.searchbutton = Button(self.searchheader, text="Search", fg="gray99", bg="mediumblue", activebackground="mediumblue", anchor=NW, command=self.search)
         self.searchbutton.grid(row=0, columnspan=9, sticky=NW, padx=(600,10), pady=20)
         #CREATES BLUE SEARCH BUTTON
+        self.loginbutton = Button(self.searchheader, text="Login", fg="gray99", bg="mediumblue", activebackground="mediumblue", anchor=NW, command=self.login)
+        self.loginbutton.grid(row=0, columnspan=9, sticky=NW, padx=(700,10), pady=20)
         #CREATES A SCROLLABLE LIST BOX
         self.listbox = Listbox(self.searchframe, width=100, selectmode=SINGLE, yscrollcommand=self.scrollboi.set)
         self.scrollboi.config(command=self.listbox.yview)
@@ -243,7 +248,74 @@ class Search:
     def call(self):
         for s in foodData: #FOR THE NUMBER OF THINGS IN FOOD DATA
             if s['type'].lower() == self.searchentry.get().lower(): #IF THE (NUMBER IN FOODDATA + THE FOOD TYPE) IS THE SAME AS WHAT IS IN THE TOP ENTRY BOX THEN:
-                self.listbox.insert(END, s['fullName'])             #INSERT ITEMS IN THE LIST BOX
+                self.listbox.insert(END, s['fullName']) 
+                
+    def login(self):
+        #make new window
+        self.loginwindow = Toplevel()
+        self.loginwindow.title("Login")
+        self.loginwindow.geometry("300x200")
+        self.loginwindow.resizable(0,0)
+        self.loginwindow.configure(bg="navy")
+
+        #make labels
+        self.logintitle = Label(self.loginwindow, text="Login/Sign Up", fg="gray99", bg="navy")
+        self.logintitle.grid(row=0, column=1, sticky=W, padx=10)
+
+        self.userlabel = Label(self.loginwindow, text="Username:", fg="gray99", bg="navy")
+        self.userlabel.grid(row=1, column=0, sticky=W, padx=10)
+
+        self.userentry = Entry(self.loginwindow, width=20)
+        self.userentry.grid(row=1, column=1, sticky=W, padx=10)
+
+        self.passlabel = Label(self.loginwindow, text="Password:", fg="gray99", bg="navy")
+        self.passlabel.grid(row=2, column=0, sticky=W, padx=10)
+
+        self.passentry = Entry(self.loginwindow, width=20, show="*")
+        self.passentry.grid(row=2, column=1, sticky=W, padx=10)
+
+        self.loginbut = Button(self.loginwindow, text="Login", command=self.loginbut)
+        self.loginbut.grid(row=3, column=1, sticky=W, padx=10)
+
+        self.signupbut= Button(self.loginwindow, text="Sign Up", command=self.signupbut)
+        self.signupbut.grid(row=4, column=1, sticky=W, padx=10)
+
+    def loginbut(self):
+        #read csv file for login
+        print("eeee")
+        with open('login.csv', 'r') as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+                print(row)
+                if row[0] == self.userentry.get() and row[1] == self.passentry.get():
+                    user = self.userentry.get()
+                    self.loginbutton.configure(text="Logout" , command=self.logoutbut)  
+                    print(user)
+                    self.loginwindow.withdraw()
+        csvfile.close()
+
+    def signupbut(self):
+        #go to bottom of csv file and write new user
+        with open('login.csv', 'a', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow([self.userentry.get(), self.passentry.get()])
+        #log what user signed in
+        user = self.userentry.get()
+        self.loginbutton.configure(text="Logout" , command=self.logoutbut)
+        print(user)
+        csvfile.close()
+        self.loginwindow.withdraw()
+    
+    def logoutbut(self):
+        self.loginbutton.configure(text="Login" , command="")
+        self.loginwindow.deiconify()
+        user = "ee"
+
+        
+    
+
+        
+
 
 #FANCY GUI STUFF
 root = Tk()
