@@ -14,8 +14,8 @@ file_content = my_file.readlines()
 #OPENS THE FILE AND READS IT
 #MAKES A LIST OF ALL THE ID'S, TYPES, FULL NAMES, ECT
 foodData = []
-user = ""
-
+user = []
+select = []
 
 for n in range(1, len(file_content)):
     Vid = file_content[n].split('\t')[0]
@@ -60,8 +60,11 @@ class Search:
         self.searchheader.grid_propagate(0)
         self.searchheader.grid(row=0, columnspan=9)
         #CREATES TOP BLUE PART
-        self.addfoodbutton = Button(self.searchframe, text="Add Food", command='', fg="gray99", bg="mediumblue", activebackground="mediumblue")
+        self.addfoodbutton = Button(self.searchframe, text="Add Food", fg="gray99", bg="mediumblue", activebackground="mediumblue", command=self.addfood)
         self.addfoodbutton.grid(row=0, column=2, sticky=W)
+
+        self.viewbutton = Button(self.searchframe, text="View", fg="gray99", bg="mediumblue", activebackground="mediumblue", command=self.viewfood)
+        self.viewbutton.grid(row=0, column=3, sticky=W)
         #SHOWS THE BACKROUND AT THE TOP
         self.searchbacklabel = Label(self.searchheader, image=self.back)
         self.searchbacklabel.place(x=0)
@@ -204,7 +207,6 @@ class Search:
     def clickevent(self, varX):
         for a in foodData: #FOR THE NUMBER OF THINGS IN FOOD DATA
             if a['fullName'] == self.listbox.get(self.listbox.curselection()): #IF (NUMBER IN FOODDATA+FULLNAME) IS THE SAME AS THE THING CLICKED ON IN THE LIST BOX THEN:
-        
                 #EDIT FIRST SET OF EDITABLE LABELS
                 self.enlabel1.configure(text=a['energy'])
                 self.prolabel1.configure(text=a['protein'])
@@ -223,6 +225,12 @@ class Search:
                 self.suglabel2.configure(text= ((float(a['sugars']) * 1000) * (float(self.customentry.get()))) / 1000)
                 self.sodlabel2.configure(text= ((float(a['sodium']) * 1000) * (float(self.customentry.get()))) / 1000)
                 #EDIT SECOND SET OF EDITABLE LABELS (AND TIMES THE NUBERS BY THE NUMBER IN THE ENTRY BOX)
+                #if select has items in it, delete them
+                if select != []:
+                    for i in select:
+                        select.remove(i)
+                foodSelect = a['fullName']
+                select.append(foodSelect)
 
     #DEFINES THE SEARCH FUNCTION
     def search(self):
@@ -290,10 +298,11 @@ class Search:
             for row in reader:
                 print(row)
                 if row[0] == self.userentry.get() and row[1] == self.passentry.get():
-                    user = self.userentry.get()
+                    users = self.userentry.get()
+                    user.append(users)
                     self.loginbutton.configure(text="Logout" , command=self.logoutbut)  
-                    print(user)
                     self.loginwindow.withdraw()
+                    print(user)
         csvfile.close()
 
     def signupbut(self):
@@ -302,18 +311,42 @@ class Search:
             writer = csv.writer(csvfile)
             writer.writerow([self.userentry.get(), self.passentry.get()])
         #log what user signed in
-        user = self.userentry.get()
+        users = self.userentry.get()
+        user.append(users)
         self.loginbutton.configure(text="Logout" , command=self.logoutbut)
-        print(user)
         csvfile.close()
         self.loginwindow.withdraw()
+        print(user)
     
     def logoutbut(self):
         self.loginbutton.configure(text="Login" , command=self.login2)
-        user = "ee"
+        user.pop()
+        print(user)
 
     def login2(self):
         self.loginwindow.deiconify()
+
+    def addfood(self):
+        with open('addData.csv', 'a', newline='') as csvfile:
+            user = self.userentry.get()
+            writer = csv.writer(csvfile)
+            writer.writerow([user, select[0]])
+            print(self.listbox.curselection)
+
+    def viewfood(self):
+        self.listbox.delete(0, END)
+        with open('addData.csv', 'r') as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+                if row[0] == user[0]:
+                    for b in foodData:
+                        if b['fullName'] == row[1]:
+
+                            print(row[1])
+                            self.listbox.insert(END, b['fullName'])
+
+
+
 
 #FANCY GUI STUFF
 root = Tk()
