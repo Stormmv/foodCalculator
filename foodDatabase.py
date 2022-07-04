@@ -60,6 +60,8 @@ class Search:
         self.searchheader.grid_propagate(0)
         self.searchheader.grid(row=0, columnspan=9)
         #CREATES TOP BLUE PART
+        self.addfoodbutton = Button(self.searchframe, text="Add Food", command='', fg="gray99", bg="mediumblue", activebackground="mediumblue")
+        self.addfoodbutton.grid(row=0, column=2, sticky=W)
         #SHOWS THE BACKROUND AT THE TOP
         self.searchbacklabel = Label(self.searchheader, image=self.back)
         self.searchbacklabel.place(x=0)
@@ -70,7 +72,7 @@ class Search:
         #ENTRY BOX IN TOP BLUE PART
         #CREATES BLUE SEARCH BUTTON
         self.searchbutton = Button(self.searchheader, text="Search", fg="gray99", bg="mediumblue", activebackground="mediumblue", anchor=NW, command=self.search)
-        self.searchbutton.grid(row=0, columnspan=9, sticky=NW, padx=(600,10), pady=20)
+        self.searchbutton.grid(row=0, column=3, sticky=NW, padx=(600,10), pady=20)
         #CREATES BLUE SEARCH BUTTON
         self.loginbutton = Button(self.searchheader, text="Login", fg="gray99", bg="mediumblue", activebackground="mediumblue", anchor=NW, command=self.login)
         self.loginbutton.grid(row=0, columnspan=9, sticky=NW, padx=(700,10), pady=20)
@@ -307,15 +309,11 @@ class Search:
         self.loginwindow.withdraw()
     
     def logoutbut(self):
-        self.loginbutton.configure(text="Login" , command="")
-        self.loginwindow.deiconify()
+        self.loginbutton.configure(text="Login" , command=self.login2)
         user = "ee"
 
-        
-    
-
-        
-
+    def login2(self):
+        self.loginwindow.deiconify()
 
 #FANCY GUI STUFF
 root = Tk()
