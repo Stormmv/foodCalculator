@@ -225,73 +225,84 @@ class Search:
                 self.suglabel2.configure(text= ((float(a['sugars']) * 1000) * (float(self.customentry.get()))) / 1000)
                 self.sodlabel2.configure(text= ((float(a['sodium']) * 1000) * (float(self.customentry.get()))) / 1000)
                 #EDIT SECOND SET OF EDITABLE LABELS (AND TIMES THE NUBERS BY THE NUMBER IN THE ENTRY BOX)
-                #if select has items in it, delete them
+                #IF SELECTED HAS ITEMS IN IT, DELETE IT
                 if select != []:
                     for i in select:
                         select.remove(i)
                 foodSelect = a['fullName']
                 select.append(foodSelect)
+                #IF SELECTED HAS ITEMS IN IT, DELETE IT
 
     #DEFINES THE SEARCH FUNCTION
     def search(self):
         self.listbox.delete(0, END) #CLEARS THE LIST BOX
-
-        self.enlabel1.configure(text=' ') #RESETS THE LABELS THAT DISPLAY THE VALUES
+    #DEFINES THE SEARCH FUNCTION
+        #RESETS THE LABELS THAT DISPLAY THE VALUES
+        self.enlabel1.configure(text=' ') 
         self.prolabel1.configure(text=' ')
         self.fTotallabel1.configure(text=' ')
         self.fSaturatedlabel1.configure(text=' ')
         self.carblabel1.configure(text=' ')
         self.suglabel1.configure(text=' ')
         self.sodlabel1.configure(text=' ')
-
-        self.enlabel2.configure(text=' ') #RESETS THE LABELS THAT DISPLAY THE VALUES
+        #RESETS THE LABELS THAT DISPLAY THE VALUES
+        #RESETS THE LABELS THAT DISPLAY THE VALUES
+        self.enlabel2.configure(text=' ') 
         self.prolabel2.configure(text=' ')
         self.fTotallabel2.configure(text=' ')
         self.fSaturatedlabel2.configure(text=' ')
         self.carblabel2.configure(text=' ')
         self.suglabel2.configure(text=' ')
         self.sodlabel2.configure(text=' ')
-        
-        self.call()                 #GO TO THE CALL FUNCTION
+        #RESETS THE LABELS THAT DISPLAY THE VALUES
+        #GO TO THE CALL FUNCTION
+        self.call()    
 
     #DEFINES THE CALL FUNCTION
     def call(self):
         for s in foodData: #FOR THE NUMBER OF THINGS IN FOOD DATA
             if s['type'].lower() == self.searchentry.get().lower(): #IF THE (NUMBER IN FOODDATA + THE FOOD TYPE) IS THE SAME AS WHAT IS IN THE TOP ENTRY BOX THEN:
                 self.listbox.insert(END, s['fullName']) 
-                
+    
+    #DEFINES THE LOGIN FUNCTION
     def login(self):
-        #make new window
+        #MAKE NEW WINDOW
         self.loginwindow = Toplevel()
         self.loginwindow.title("Login")
         self.loginwindow.geometry("300x200")
         self.loginwindow.resizable(0,0)
         self.loginwindow.configure(bg="navy")
-
-        #make labels
+        #MAKE NEW WINDOW
+        #MAKE LABELS
         self.logintitle = Label(self.loginwindow, text="Login/Sign Up", fg="gray99", bg="navy")
         self.logintitle.grid(row=0, column=1, sticky=W, padx=10)
 
         self.userlabel = Label(self.loginwindow, text="Username:", fg="gray99", bg="navy")
         self.userlabel.grid(row=1, column=0, sticky=W, padx=10)
-
+        #MAKE LABELS
+        #MAKE ENTRY BOX
         self.userentry = Entry(self.loginwindow, width=20)
         self.userentry.grid(row=1, column=1, sticky=W, padx=10)
-
+        #MAKE ENTRY BOX
+        #MAKE LABEL
         self.passlabel = Label(self.loginwindow, text="Password:", fg="gray99", bg="navy")
         self.passlabel.grid(row=2, column=0, sticky=W, padx=10)
-
+        #MAKE LABEL
+        #MAKE ENTRY BOX
         self.passentry = Entry(self.loginwindow, width=20, show="*")
         self.passentry.grid(row=2, column=1, sticky=W, padx=10)
-
+        #MAKE ENTRY BOX
+        #MAKE BUTTONS
         self.loginbut = Button(self.loginwindow, text="Login", command=self.loginbut)
         self.loginbut.grid(row=3, column=1, sticky=W, padx=10)
 
         self.signupbut= Button(self.loginwindow, text="Sign Up", command=self.signupbut)
         self.signupbut.grid(row=4, column=1, sticky=W, padx=10)
+        #MAKE BUTTONS
 
+    #DEFINES THE LOGIN BUTTON
     def loginbut(self):
-        #read csv file for login
+        #READ CSV FILE FOR LOGIN AND LOG USER IN IF USERNAME AND PASSWORD ARE CORRECT
         print("eeee")
         with open('login.csv', 'r') as csvfile:
             reader = csv.reader(csvfile)
@@ -306,11 +317,11 @@ class Search:
         csvfile.close()
 
     def signupbut(self):
-        #go to bottom of csv file and write new user
+        #GO TO BOTTOM OF CSV FILE AND MAKE NEW USER
         with open('login.csv', 'a', newline='') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow([self.userentry.get(), self.passentry.get()])
-        #log what user signed in
+        #LOG WHAT USER SIGNED IN
         users = self.userentry.get()
         user.append(users)
         self.loginbutton.configure(text="Logout" , command=self.logoutbut)
@@ -318,30 +329,40 @@ class Search:
         self.loginwindow.withdraw()
         print(user)
     
+    #DEFINES THE LOGOUT BUTTON
     def logoutbut(self):
+        #CHANGES STATE OF BUTTON AND LOGS OUT THE USER
         self.loginbutton.configure(text="Login" , command=self.login2)
         user.pop()
         print(user)
 
+    #DEFINES THE LOGIN2 BUTTON
     def login2(self):
+        #DISPLAYS LOGIN SCREEN
         self.loginwindow.deiconify()
 
+    #DEFINES THE ADDFOOF BUTTON
     def addfood(self):
+        #OPEN CSV FILE AND GO TO NEW LINE
         with open('addData.csv', 'a', newline='') as csvfile:
+            #SAVE SELECTED ITEMS FOR USE THAT SELECTED THEM
             user = self.userentry.get()
             writer = csv.writer(csvfile)
             writer.writerow([user, select[0]])
             print(self.listbox.curselection)
 
+    #DEFINES THE VIEW FOOD BUTTON
     def viewfood(self):
         self.listbox.delete(0, END)
+        #OPENS CSV FILE AND READS IT LOOKING FOR USERS SELECTED ITEMS
         with open('addData.csv', 'r') as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
+                #IF FOUND THEN DISPLAY IN LISTBOX
                 if row[0] == user[0]:
                     for b in foodData:
                         if b['fullName'] == row[1]:
-
+                            
                             print(row[1])
                             self.listbox.insert(END, b['fullName'])
 
